@@ -78,17 +78,18 @@ const ButtonSign = ({
             // console.log(response.data, response.status);
           } catch (error) {
             if (
-              error.response.status === 400 &&
-              error.response.data.error === "This email already has an account."
+              (error.response.status === 400 &&
+                error.response.data.error ===
+                  "This email already has an account.") ||
+              (error.response.status === 400 &&
+                error.response.data.error ===
+                  "This username already has an account.") ||
+              (error.response.status === 400 &&
+                error.response.data.error === "Missing parameters")
             ) {
-              setMessageError("This email already has an account.");
-            }
-            if (
-              error.response.status === 400 &&
-              error.response.data.error ===
-                "This username already has an account."
-            ) {
-              setMessageError("This username already has an account.");
+              setMessageError(error.response.data.error);
+            } else {
+              setMessageError("An error occured");
             }
             // console.log(error.response, error.response.data.error);
           }

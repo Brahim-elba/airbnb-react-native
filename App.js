@@ -1,14 +1,25 @@
+// Tools
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+
+// Containers
 import HomeScreen from "./containers/HomeScreen";
 import ProfileScreen from "./containers/ProfileScreen";
 import SignInScreen from "./containers/SignInScreen";
 import SignUpScreen from "./containers/SignUpScreen";
 import SettingsScreen from "./containers/SettingsScreen";
+import RoomScreen from "./containers/RoomScreen";
+
+// Components
+import Logo from "./components/Logo";
+
+// Colors
+import colors from "./assets/colors";
+const { pinkAirbnb } = colors;
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -46,11 +57,11 @@ export default function App() {
     <NavigationContainer>
       {isLoading ? null : userToken === null ? ( // We haven't finished checking for the token yet
         // No token found, user isn't signed in
-        <Stack.Navigator>
-          <Stack.Screen options={{ headerShown: false }} name="SignIn">
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="SignIn">
             {() => <SignInScreen setToken={setToken} />}
           </Stack.Screen>
-          <Stack.Screen options={{ headerShown: false }} name="SignUp">
+          <Stack.Screen name="SignUp">
             {() => <SignUpScreen setToken={setToken} />}
           </Stack.Screen>
         </Stack.Navigator>
@@ -61,7 +72,7 @@ export default function App() {
             {() => (
               <Tab.Navigator
                 tabBarOptions={{
-                  activeTintColor: "tomato",
+                  activeTintColor: pinkAirbnb,
                   inactiveTintColor: "gray",
                 }}
               >
@@ -79,9 +90,8 @@ export default function App() {
                       <Stack.Screen
                         name="Home"
                         options={{
-                          title: "My App",
-                          headerStyle: { backgroundColor: "red" },
-                          headerTitleStyle: { color: "white" },
+                          title: <Logo sizeLogo={34} />,
+                          headerStyle: { backgroundColor: "white" },
                         }}
                       >
                         {() => <HomeScreen />}

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Constants from "expo-constants";
+import { StatusBar } from "expo-status-bar";
 
 // Comoponents
 import Logo from "../components/Logo";
@@ -30,6 +31,7 @@ export default function SignInScreen({ setToken }) {
 
   return (
     <KeyboardAwareScrollView style={styles.pageSignIn}>
+      <StatusBar style="dark" />
       <View style={styles.containerSignIn}>
         <View style={styles.topPageSignIn}>
           <Logo sizeLogo={100} />
@@ -69,12 +71,12 @@ export default function SignInScreen({ setToken }) {
 }
 
 const styles = StyleSheet.create({
-  pageSignIn: {},
+  pageSignIn: { backgroundColor: "white", flex: 1 },
   containerSignIn: {
     backgroundColor: "white",
-    height: Dimensions.get("window").height,
-    paddingBottom: 30,
-    paddingTop: Constants.statusBarHeight,
+    height: Dimensions.get("window").height - Constants.statusBarHeight,
+    paddingVertical: 30,
+    marginTop: Constants.statusBarHeight,
     paddingHorizontal: 30,
     justifyContent: "space-evenly",
   },

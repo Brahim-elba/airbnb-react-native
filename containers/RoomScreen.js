@@ -7,14 +7,10 @@ import axios from "axios";
 // Components
 import RoomsInfos from "../components/RoomsInfos";
 
-// Colors
-import colors from "../assets/colors";
-const { pinkAirbnb } = colors;
-
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const [dataRooms, setDataRooms] = useState([]);
+  //   const [dataRooms, setDataRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -42,28 +38,11 @@ export default function HomeScreen() {
       />
     </View>
   ) : (
-    <FlatList
-      style={styles.homeScreen}
-      data={dataRooms}
-      keyExtractor={(item) => item._id}
-      renderItem={({ item }) => {
-        return (
-          <RoomsInfos
-            imageRoomUri={item.photos[0].url}
-            priceRoom={item.price}
-            titleRoom={item.title}
-            ratingRoom={item.ratingValue}
-            reviewsRoom={item.reviews}
-            imageUserUri={item.user.account.photo.url}
-            roomId={item._id}
-          />
-        );
-      }}
-    />
+    <View style={styles.roomScreen}></View>
   );
 }
 
 const styles = StyleSheet.create({
-  homeScreen: { backgroundColor: "white" },
+  roomScreen: { backgroundColor: "white" },
   loader: { flex: 1, justifyContent: "center", alignItems: "center" },
 });

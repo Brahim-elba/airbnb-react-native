@@ -55,7 +55,9 @@ export default function HomeScreen() {
             ratingRoom={item.ratingValue}
             reviewsRoom={item.reviews}
             imageUserUri={item.user.account.photo.url}
+            descriptionRoom={item.description}
             roomId={item._id}
+            originScreen="home"
           />
         );
       }}
@@ -65,5 +67,10 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   homeScreen: { backgroundColor: "white" },
-  loader: { flex: 1, justifyContent: "center", alignItems: "center" },
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
 });

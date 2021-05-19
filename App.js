@@ -98,6 +98,17 @@ export default function App() {
                       </Stack.Screen>
 
                       <Stack.Screen
+                        name="Room"
+                        options={{
+                          title: <Logo sizeLogo={34} />,
+                          headerStyle: { backgroundColor: "white" },
+                          headerBackTitleVisible: false,
+                        }}
+                      >
+                        {(props) => <RoomScreen {...props} />}
+                      </Stack.Screen>
+
+                      <Stack.Screen
                         name="Profile"
                         options={{
                           title: "User Profile",

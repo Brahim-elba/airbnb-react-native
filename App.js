@@ -13,6 +13,7 @@ import SignInScreen from "./containers/SignInScreen";
 import SignUpScreen from "./containers/SignUpScreen";
 import SettingsScreen from "./containers/SettingsScreen";
 import RoomScreen from "./containers/RoomScreen";
+import AroundMeScreen from "./containers/AroundMeScreen";
 
 // Components
 import Logo from "./components/Logo";
@@ -91,7 +92,9 @@ export default function App() {
                         name="Home"
                         options={{
                           title: <Logo sizeLogo={34} />,
-                          headerStyle: { backgroundColor: "white" },
+                          headerStyle: {
+                            backgroundColor: "white",
+                          },
                         }}
                       >
                         {() => <HomeScreen />}
@@ -119,6 +122,37 @@ export default function App() {
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>
+
+                <Tab.Screen
+                  name="Around me"
+                  options={{
+                    tabBarLabel: "Around me",
+                    tabBarIcon: ({ color, size }) => (
+                      <Ionicons
+                        name="ios-location-outline"
+                        size={size}
+                        color={color}
+                      />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Around me"
+                        options={{
+                          title: <Logo sizeLogo={34} />,
+                          headerStyle: {
+                            backgroundColor: "white",
+                          },
+                        }}
+                      >
+                        {() => <AroundMeScreen />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+
                 <Tab.Screen
                   name="Settings"
                   options={{

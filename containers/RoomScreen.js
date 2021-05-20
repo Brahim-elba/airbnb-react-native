@@ -1,7 +1,6 @@
 // Tools
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/core";
-import { View, StyleSheet, ActivityIndicator } from "react-native";
+import { View, StyleSheet, ActivityIndicator, ScrollView } from "react-native";
 import axios from "axios";
 
 // Components
@@ -11,7 +10,7 @@ import RoomsInfos from "../components/RoomsInfos";
 import colors from "../assets/colors";
 const { pinkAirbnb } = colors;
 
-export default function HomeScreen({ route }) {
+export default function HomeScreen({ route, navigation }) {
   //   const navigation = useNavigation();
 
   const [dataRoom, setDataRoom] = useState([]);
@@ -35,14 +34,10 @@ export default function HomeScreen({ route }) {
 
   return isLoading ? (
     <View style={styles.loader}>
-      <ActivityIndicator
-        size="large"
-        color={pinkAirbnb}
-        style={{ marginTop: 100 }}
-      />
+      <ActivityIndicator size="large" color={pinkAirbnb} />
     </View>
   ) : (
-    <View style={styles.roomScreen}>
+    <ScrollView style={styles.roomScreen}>
       <RoomsInfos
         imageRoomUri={dataRoom.photos[0].url}
         priceRoom={dataRoom.price}
@@ -52,14 +47,18 @@ export default function HomeScreen({ route }) {
         imageUserUri={dataRoom.user.account.photo.url}
         descriptionRoom={dataRoom.description}
         roomId={dataRoom._id}
+        latitude={dataRoom.location[1]}
+        longitude={dataRoom.location[0]}
         originScreen="room"
       />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  roomScreen: { backgroundColor: "white", flex: 1 },
+  roomScreen: {
+    backgroundColor: "white",
+  },
   loader: {
     flex: 1,
     justifyContent: "center",

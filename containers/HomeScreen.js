@@ -35,11 +35,7 @@ export default function HomeScreen() {
 
   return isLoading ? (
     <View style={styles.loader}>
-      <ActivityIndicator
-        size="large"
-        color={pinkAirbnb}
-        style={{ marginTop: 100 }}
-      />
+      <ActivityIndicator size="large" color={pinkAirbnb} />
     </View>
   ) : (
     <FlatList

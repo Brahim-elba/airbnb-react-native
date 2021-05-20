@@ -5,6 +5,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 
 // Colors
 import colors from "../assets/colors";
@@ -19,6 +20,8 @@ const RoomsInfos = ({
   imageUserUri,
   descriptionRoom,
   roomId,
+  latitude,
+  longitude,
   originScreen,
 }) => {
   const navigation = useNavigation();
@@ -54,6 +57,7 @@ const RoomsInfos = ({
             }
           : null
       }
+      activeOpacity={originScreen === "room" && 1}
     >
       <View
         style={
@@ -138,6 +142,17 @@ const RoomsInfos = ({
               <AntDesign name="caretdown" size={14} color={greyStarRating} />
             )}
           </TouchableOpacity>
+          <MapView
+            style={styles.mapView}
+            initialRegion={{
+              latitude: latitude,
+              longitude: longitude,
+              latitudeDelta: 0.2,
+              longitudeDelta: 0.2,
+            }}
+          >
+            <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
+          </MapView>
         </View>
       )}
     </TouchableOpacity>
@@ -166,6 +181,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingVertical: 12,
     paddingHorizontal: 25,
+    minWidth: 100,
     position: "absolute",
     bottom: 10,
   },
@@ -219,5 +235,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     marginRight: 5,
+  },
+  mapView: {
+    marginTop: 20,
+    width: Dimensions.get("window").width,
+    marginLeft: -15,
+    height: 400,
   },
 });

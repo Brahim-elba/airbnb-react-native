@@ -56,9 +56,10 @@ const AroundMeScreen = () => {
 
   return isLoading ? (
     <View style={styles.loaderScreen}>
-      <MapView style={styles.mapViewLoader}>
+      <MapView style={styles.mapViewLoader} />
+      <View style={styles.loaderView}>
         <ActivityIndicator size="large" color={pinkAirbnb} />
-      </MapView>
+      </View>
     </View>
   ) : (
     // Intègre les valeurs tests de localisation du User
@@ -95,12 +96,25 @@ const AroundMeScreen = () => {
 export default AroundMeScreen;
 
 const styles = StyleSheet.create({
-  loaderScreen: { flex: 1 },
-  mapView: { flex: 1 },
+  loaderScreen: {
+    flex: 1,
+    position: "relative",
+  },
+
+  loaderView: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    top: "45%",
+    left: "45%",
+  },
   mapViewLoader: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     opacity: 0.4,
   },
+  mapView: { flex: 1 },
 });

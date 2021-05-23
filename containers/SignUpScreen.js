@@ -21,7 +21,7 @@ import TextArea from "../components/TextArea";
 import colors from "../assets/colors";
 const { pinkAirbnb, greyText } = colors;
 
-export default function SignUpScreen({ setToken }) {
+export default function SignUpScreen({ setTokenAndId }) {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -77,7 +77,7 @@ export default function SignUpScreen({ setToken }) {
           <Text style={styles.textMissingParams}>{missingParameters}</Text>
           <ButtonSign
             nameButton="Sign up"
-            setToken={setToken}
+            setTokenAndId={setTokenAndId}
             setMessageError={setMissingParameters}
             objectElementSign={objectElementSign}
           />

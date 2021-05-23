@@ -5,15 +5,16 @@ import axios from "axios";
 
 // Colors
 import colors from "../assets/colors";
-const { pinkAirbnb, greyText } = colors;
+const { pinkAirbnb, greyText, lightGrey } = colors;
 
 const ButtonSign = ({
   nameButton,
-  setToken,
+  setTokenAndId,
   setMessageError,
   objectElementSign,
+  submitUpdate,
 }) => {
-  const submitFormSign = async () => {
+  const submitButton = async () => {
     // ----------------------
     // ------- SIGNIN -------
     // ----------------------
@@ -31,7 +32,7 @@ const ButtonSign = ({
             }
           );
           if (response.status === 200 && response.data.token) {
-            setToken(response.data.token);
+            setTokenAndId(response.data.token, response.data.id);
             alert("Successful connection !");
             setMessageError("");
           }
@@ -71,7 +72,7 @@ const ButtonSign = ({
               }
             );
             if (response.status === 200 && response.data.token) {
-              setToken(response.data.token);
+              setTokenAndId(response.data.token, response.data.id);
               alert("Successful registration !");
               setMessageError("");
             }
@@ -95,11 +96,23 @@ const ButtonSign = ({
           }
         }
       }
+      // ----------------------
+      // ------- LOG OUT -------
+      // ----------------------
+    } else if (nameButton === "Log out") {
+      setTokenAndId(null, null);
     }
   };
 
   return (
-    <TouchableOpacity style={styles.buttonSign} onPress={submitFormSign}>
+    <TouchableOpacity
+      style={
+        nameButton === "Log out"
+          ? [styles.buttonSign, styles.buttonLogOut]
+          : styles.buttonSign
+      }
+      onPress={nameButton === "Update" ? submitUpdate : submitButton}
+    >
       <Text style={styles.textButton}>{nameButton}</Text>
     </TouchableOpacity>
   );
@@ -122,5 +135,8 @@ const styles = StyleSheet.create({
     color: greyText,
     fontSize: 16,
     fontWeight: "600",
+  },
+  buttonLogOut: {
+    backgroundColor: lightGrey,
   },
 });

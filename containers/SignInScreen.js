@@ -21,7 +21,7 @@ import ButtonSign from "../components/ButtonSign";
 import colors from "../assets/colors";
 const { pinkAirbnb, greyText } = colors;
 
-export default function SignInScreen({ setToken }) {
+export default function SignInScreen({ setTokenAndId }) {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +53,7 @@ export default function SignInScreen({ setToken }) {
           <Text style={styles.textMissingParams}>{missingParameters}</Text>
           <ButtonSign
             nameButton="Sign in"
-            setToken={setToken}
+            setTokenAndId={setTokenAndId}
             setMessageError={setMissingParameters}
             objectElementSign={objectElementSign}
           />

@@ -1,9 +1,9 @@
 // Tools
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import axios from "axios";
-import MapView, { CalloutSubview, Marker } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 // Colors
